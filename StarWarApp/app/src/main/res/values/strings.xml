@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">StarWarApp</string>
+    <string name="search">Search by name eg Darth </string>
+
+    <!--Notification SnackBar -->
+    <string name="error_msg">Sorry, we can’t process your request right now. Please try again, later.</string>
+    <string name="no_internet_error_msg">No internet connection available. Please check the connection and try again, later.</string>
+    <string name="please_enter_valid_code_msg">Please enter valid code</string>
+    <string name="please_enter_valid_msg">Please enter valid</string>
+    <string name="error_msg_no_data">No data available</string>
+
+    <string name="something_went_wrong">Something went wrong. Please try again later</string>
+    <string name="search_no_result_found">No results found</string>
+    <string name="recent_search">Recent searched stars : </string>
+
+    <string name="detail_header">Star Details </string>
+    <string name="star_name">Name : </string>
+    <string name="star_height">Height : </string>
+    <string name="star_mass">Mass : </string>
+    <string name="star_haircolor">Hair Color : </string>
+    <string name="star_skincolor">Skin Color : </string>
+    <string name="star_eyecolor">Eye Color : </string>
+    <string name="star_birthyear">Birth Year : </string>
+    <string name="star_gender">Gender : </string>
+    <string name="star_created">Created Date: </string>
+    <string name="star_edited">Edited Date: </string>
+
+
+    <string name="load_more"><u>Load More</u>.</string>
+
+
+
+</resources>

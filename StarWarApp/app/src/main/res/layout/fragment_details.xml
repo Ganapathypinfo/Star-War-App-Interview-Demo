@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/starwarrbg"
+    android:gravity="top|center_horizontal"
+    android:padding="@dimen/view_padding_10">
+
+    <androidx.cardview.widget.CardView
+        app:layout_constraintTop_toTopOf="parent"
+        android:id="@+id/llytstarwarsDetialsHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/toolbar_height"
+        android:gravity="center_horizontal"
+        app:cardElevation="10dp"
+        app:cardCornerRadius="20dp"
+        android:layout_margin="10dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvStarDetialHeader"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="center"
+            android:textSize="20sp"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="@dimen/view_padding_10"
+            android:paddingBottom="@dimen/view_padding_10"
+            android:layout_marginEnd="@dimen/view_padding_10"
+            android:layout_marginRight="@dimen/view_padding_10"
+            android:text="@string/detail_header" />
+
+
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/llytstarwarsDetials"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="10dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        app:cardMaxElevation="12dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llytstarwarsDetialsHeader"
+        tools:layout_editor_absoluteX="24dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@color/black"
+                android:layout_marginStart="@dimen/view_padding_10"
+                android:layout_marginEnd="@dimen/view_padding_10"
+                android:layout_marginTop="@dimen/page_margin_20"
+                android:id="@+id/llytStarName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:id="@+id/tvStarNameLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/view_padding_10"
+                    android:layout_marginRight="@dimen/view_padding_10"
+                    android:text="@string/star_name"
+                    android:layout_marginLeft="5dp" />
+
+                <TextView
+                    android:id="@+id/tvStarName"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                app:layout_constraintTop_toBottomOf="@+id/llytStarName"
+                android:background="@color/black"
+                android:layout_marginStart="@dimen/view_padding_10"
+                android:layout_marginEnd="@dimen/view_padding_10"
+                android:layout_marginTop="@dimen/page_margin_30"
+                android:id="@+id/llytStarHeight"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:id="@+id/tvStarHeightLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/view_padding_10"
+                    android:layout_marginRight="@dimen/view_padding_10"
+                    android:text="@string/star_height"
+                    android:layout_marginLeft="5dp" />
+
+                <TextView
+                    android:id="@+id/tvStarHeight"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                app:layout_constraintTop_toBottomOf="@+id/llytStarHeight"
+                android:background="@color/black"
+                android:layout_marginStart="@dimen/view_padding_10"
+                android:layout_marginEnd="@dimen/view_padding_10"
+                android:layout_marginTop="@dimen/page_margin_30"
+                android:id="@+id/llytStarMass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:id="@+id/tvStarMassLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/view_padding_10"
+                    android:layout_marginRight="@dimen/view_padding_10"
+                    android:text="@string/star_mass"
+                    android:layout_marginLeft="5dp" />
+
+                <TextView
+                    android:id="@+id/tvStarMass"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                app:layout_constraintTop_toBottomOf="@+id/llytStarMass"
+                android:background="@color/black"
+                android:layout_marginStart="@dimen/view_padding_10"
+                android:layout_marginEnd="@dimen/view_padding_10"
+                android:layout_marginTop="@dimen/page_margin_30"
+                android:id="@+id/llytSStarHairColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:id="@+id/tvStarHairColorLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/view_padding_10"
+                    android:layout_marginRight="@dimen/view_padding_10"
+                    android:text="@string/star_haircolor"
+                    android:layout_marginLeft="5dp" />
+
+                <TextView
+                    android:id="@+id/tvStarHairColor"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                app:layout_constraintTop_toBottomOf="@+id/llytSStarHairColor"
+                android:background="@color/black"
+                android:layout_marginStart="@dimen/view_padding_10"
+                android:layout_marginEnd="@dimen/view_padding_10"
+                android:layout_marginTop="@dimen/page_margin_30"
+                android:id="@+id/llytSkinColorLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:id="@+id/tvSkinColorLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/view_padding_10"
+                    android:layout_marginRight="@dimen/view_padding_10"
+                    android:text="@string/star_skincolor"
+                    android:layout_marginLeft="5dp" />
+
+                <TextView
+                    android:id="@+id/tvSkinColor"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                app:layout_constraintTop_toBottomOf="@+id/llytSkinColorLabel"
+                android:background="@color/black"
+                android:layout_marginStart="@dimen/view_padding_10"
+                android:layout_marginEnd="@dimen/view_padding_10"
+                android:layout_marginTop="@dimen/page_margin_30"
+                android:id="@+id/llyttvStarEyeColor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:id="@+id/tvStarEyeColorLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/view_padding_10"
+                    android:layout_marginRight="@dimen/view_padding_10"
+                    android:text="@string/star_eyecolor"
+                    android:layout_marginLeft="5dp" />
+
+                <TextView
+                    android:id="@+id/tvStarEyeColor"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                app:layout_constraintTop_toBottomOf="@+id/llyttvStarEyeColor"
+                android:background="@color/black"
+                android:layout_marginStart="@dimen/view_padding_10"
+                android:layout_marginEnd="@dimen/view_padding_10"
+                android:layout_marginTop="@dimen/page_margin_30"
+                android:id="@+id/llyttvtvStarBirthYear"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:id="@+id/tvStarBirthYearLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/view_padding_10"
+                    android:layout_marginRight="@dimen/view_padding_10"
+                    android:text="@string/star_birthyear"
+                    android:layout_marginLeft="5dp" />
+
+                <TextView
+                    android:id="@+id/tvStarBirthYear"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                app:layout_constraintTop_toBottomOf="@+id/llyttvtvStarBirthYear"
+                android:background="@color/black"
+                android:layout_marginStart="@dimen/view_padding_10"
+                android:layout_marginEnd="@dimen/view_padding_10"
+                android:layout_marginTop="@dimen/page_margin_30"
+                android:id="@+id/llyttvtvStarGenderLabel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:id="@+id/tvStarGenderLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/view_padding_10"
+                    android:layout_marginRight="@dimen/view_padding_10"
+                    android:text="@string/star_gender"
+                    android:layout_marginLeft="5dp" />
+
+                <TextView
+                    android:id="@+id/tvStarGender"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                app:layout_constraintTop_toBottomOf="@+id/llyttvtvStarGenderLabel"
+                android:background="@color/black"
+                android:layout_marginStart="@dimen/view_padding_10"
+                android:layout_marginEnd="@dimen/view_padding_10"
+                android:layout_marginTop="@dimen/page_margin_30"
+                android:id="@+id/llytvStarCreated"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:id="@+id/tvStarCreatedlabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/view_padding_10"
+                    android:layout_marginRight="@dimen/view_padding_10"
+                    android:text="@string/star_created"
+                    android:layout_marginLeft="5dp" />
+
+                <TextView
+                    android:id="@+id/tvStarCreated"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+            <LinearLayout
+                app:layout_constraintTop_toBottomOf="@+id/llytvStarCreated"
+                android:background="@color/black"
+                android:layout_marginStart="@dimen/view_padding_10"
+                android:layout_marginEnd="@dimen/view_padding_10"
+                android:layout_marginTop="@dimen/page_margin_30"
+                android:id="@+id/llytvStarEdited"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:id="@+id/tvStarEditedlabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/view_padding_10"
+                    android:layout_marginRight="@dimen/view_padding_10"
+                    android:text="@string/star_edited"
+                    android:layout_marginLeft="5dp" />
+
+                <TextView
+                    android:id="@+id/tvStarEdited"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
+
+
+
+
+
+            <ProgressBar
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/progressBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minWidth="75dp"
+                android:minHeight="75dp" />
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

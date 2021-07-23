@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.assignment.demo.starwarsapp.BuildConfig
 import com.assignment.demo.starwarsapp.R
+import com.assignment.demo.starwarsapp.constants.AppConstants
 import com.assignment.demo.starwarsapp.datamodel.peoples.Results
 import com.assignment.demo.starwarsapp.home.HomeFragment
 
@@ -40,7 +41,7 @@ class PeopleListRecyclerViewAdapter(
         holder.gender.text =  "Gender: ${curr.gender.toUpperCase()}"
         holder.birthyear.text = "BirthYear: ${curr.birth_year.toUpperCase()}"
 
-        holder.layout.setOnClickListener(View.OnClickListener { (fragment as HomeFragment).onRowItemClicked(curr.url.replace(BuildConfig.BASE_URL,""),"ListItem") })
+        holder.layout.setOnClickListener(View.OnClickListener { (fragment as HomeFragment).onRowItemClicked(curr.url.replace(BuildConfig.BASE_URL,""),AppConstants.LIST_ITEM) })
     }
 
     override fun getItemCount(): Int {

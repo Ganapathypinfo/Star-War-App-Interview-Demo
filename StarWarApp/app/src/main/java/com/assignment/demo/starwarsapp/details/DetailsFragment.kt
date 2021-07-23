@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.assignment.demo.starwarsapp.R
 import com.assignment.demo.starwarsapp.api_service.StarWarsApiRequest
 import com.assignment.demo.starwarsapp.base.BaseFragment
+import com.assignment.demo.starwarsapp.constants.AppConstants
 import com.assignment.demo.starwarsapp.databinding.FragmentDetailsBinding
 import com.assignment.demo.starwarsapp.datamodel.peoples.Results
 import com.assignment.demo.starwarsapp.details.viewmodel.DetailViewModelFactory
@@ -58,7 +59,7 @@ class DetailsFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         screen = arguments?.let { detailsViewModel.getScreen(it) }.toString()
         selectedId = arguments?.let { detailsViewModel.getData(it) }.toString()
-        if(screen!=null&& screen.contains("ListItem"))
+        if(screen!=null&& screen.contains(AppConstants.LIST_ITEM))
         {
             selectedId?.let { fetchstarwarsListDetailsFromApi(it) }
 

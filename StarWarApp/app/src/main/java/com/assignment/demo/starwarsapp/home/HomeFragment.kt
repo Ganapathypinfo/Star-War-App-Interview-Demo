@@ -18,6 +18,7 @@ import com.assignment.demo.starwarsapp.R
 import com.assignment.demo.starwarsapp.api_service.StarWarsApiRequest
 import com.assignment.demo.starwarsapp.base.BaseApiResponseModel
 import com.assignment.demo.starwarsapp.base.BaseFragment
+import com.assignment.demo.starwarsapp.constants.AppConstants
 import com.assignment.demo.starwarsapp.databinding.FragmentHomeBinding
 import com.assignment.demo.starwarsapp.datamodel.peoples.PeopleResponseModel
 import com.assignment.demo.starwarsapp.datamodel.peoples.Results
@@ -157,7 +158,7 @@ class HomeFragment : BaseFragment() {
     private fun onAutoCompleteRowClick(result: Results) {
         binding.includeAutocompleteSearchLayout.autoCompleteSearch.text.clear()
         (activity as MainActivity).hideKeyboard()
-        openDetailsFragment(dataConverter.getIdFromResult(result),"search")
+        openDetailsFragment(dataConverter.getIdFromResult(result),AppConstants.SEARCH)
     }
 
     private fun initObservers() {

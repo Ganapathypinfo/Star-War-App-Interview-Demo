@@ -12,7 +12,7 @@
     tools:ignore="RtlCompat">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/const_detials"
+        android:id="@+id/const_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
@@ -26,21 +26,23 @@
             card_view:layout_constraintRight_toLeftOf="parent"
             card_view:layout_constraintTop_toTopOf="parent"
             tools:text="@string/star_name" />
+
         <TextView
-            card_view:layout_constraintTop_toBottomOf="@+id/tvStarName"
-            card_view:layout_constraintRight_toLeftOf="parent"
             android:id="@+id/tvStarGender"
-            android:textSize="16sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:text="@string/star_gender" />
-        <TextView
-            card_view:layout_constraintTop_toBottomOf="@+id/tvStarGender"
+            android:textSize="16sp"
             card_view:layout_constraintRight_toLeftOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvStarName"
+            tools:text="@string/star_gender" />
+
+        <TextView
             android:id="@+id/tvBirthYear"
-            android:textSize="16sp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textSize="16sp"
+            card_view:layout_constraintRight_toLeftOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tvStarGender"
             tools:text="@string/star_birthyear" />
 
 
@@ -50,11 +52,10 @@
             android:layout_marginEnd="24dp"
             android:layout_marginRight="24dp"
             android:src="@mipmap/right_icon"
-            card_view:layout_constraintEnd_toEndOf="parent"
-            card_view:layout_constraintTop_toTopOf="parent"
             card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
             card_view:layout_constraintLeft_toRightOf="@id/tvStarGender"
-            />
+            card_view:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

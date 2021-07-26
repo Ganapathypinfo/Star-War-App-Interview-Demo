@@ -14,10 +14,10 @@ class ApiRepository @Inject constructor(private val apiRequest: StarWarsApiReque
     }
 
     fun details(query: String): Single<Results?>? {
-        return apiRequest.details(query,AppConstants.API_RESPONSE_FORMAT_JSON)
+        return apiRequest.details(query, AppConstants.API_RESPONSE_FORMAT_JSON)
     }
 
-    fun listitemdetails(query: String): Single<Results?>? {
+    fun listItemDetails(query: String): Single<Results?>? {
         return apiRequest.listItemDetails(query)
     }
 
@@ -26,7 +26,7 @@ class ApiRepository @Inject constructor(private val apiRequest: StarWarsApiReque
         return apiRequest.starList()
     }
 
-    fun loadMore(url:String?): Single<PeopleResponseModel>? {
+    fun loadMore(url: String?): Single<PeopleResponseModel>? {
         return apiRequest.loadMore(url)
     }
 }

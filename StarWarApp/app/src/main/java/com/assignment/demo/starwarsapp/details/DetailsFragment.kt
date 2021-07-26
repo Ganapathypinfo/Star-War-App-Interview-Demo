@@ -15,8 +15,8 @@ import com.assignment.demo.starwarsapp.details.viewmodel.DetailViewModelFactory
 import com.assignment.demo.starwarsapp.details.viewmodel.DetailsViewModel
 import com.assignment.demo.starwarsapp.repository.ApiRepository
 import com.assignment.demo.starwarsapp.retrofit.ApiRetrofit
-import com.assignment.demo.starwarsapp.utils.ImageUtils
 import com.assignment.demo.starwarsapp.utils.NotificationHelper
+import java.util.*
 import javax.inject.Inject
 
 class DetailsFragment : BaseFragment() {
@@ -27,14 +27,10 @@ class DetailsFragment : BaseFragment() {
     @Inject
     lateinit var notificationHelper: NotificationHelper
 
-    @Inject
-    lateinit var imageUtils: ImageUtils
-
-
     private lateinit var detailsViewModel: DetailsViewModel
     private lateinit var binding: FragmentDetailsBinding
-    private var selectedId : String = ""
-    private var screen : String = ""
+    private var selectedId: String = ""
+    private var screen: String = ""
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -59,13 +55,10 @@ class DetailsFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         screen = arguments?.let { detailsViewModel.getScreen(it) }.toString()
         selectedId = arguments?.let { detailsViewModel.getData(it) }.toString()
-        if(screen!=null&& screen.contains(AppConstants.LIST_ITEM))
-        {
+        if (screen != null && screen.contains(AppConstants.LIST_ITEM)) {
             selectedId?.let { fetchstarwarsListDetailsFromApi(it) }
 
-        }
-        else
-        {
+        } else {
             selectedId?.let { fetchstarwarsDetailsFromApi(it) }
         }
         initObserver()
@@ -80,9 +73,7 @@ class DetailsFragment : BaseFragment() {
                     apiResponseData?.let {
                         populateResult(it as Results)
                     }
-
                 } else {
-                    //TODO handle api error here
                     val errorMsgString = resources.getString(R.string.error_msg)
                     notificationHelper.setSnackBar(binding.root, errorMsgString)
                 }
@@ -100,20 +91,23 @@ class DetailsFragment : BaseFragment() {
     }
 
     private fun populateResult(results: Results) {
-        binding.tvStarName.text = results.name.capitalize()
-        binding.tvStarHeight.text = results.height.toString().capitalize()+" "+"cms"
-        binding.tvStarHairColor.text = results.hair_color.capitalize()
-        binding.tvSkinColor.text = results.skin_color.capitalize()
-        binding.tvStarEyeColor.text = results.eye_color.capitalize()
-        binding.tvStarMass.text = results.mass.toString().capitalize()
-        binding.tvStarBirthYear.text = results.birth_year.capitalize()
-        binding.tvStarGender.text = results.gender.capitalize()
-        val created=results.created
+        binding.tvStarName.text = results.name.capitalize(Locale.getDefault())
+        binding.tvStarHeight.text = results.height.toString()
+            .capitalize(Locale.getDefault()) + resources.getString(R.string.empty_space) + resources.getString(
+            R.string.cms
+        )
+        binding.tvStarHairColor.text = results.hair_color.capitalize(Locale.getDefault())
+        binding.tvSkinColor.text = results.skin_color.capitalize(Locale.getDefault())
+        binding.tvStarEyeColor.text = results.eye_color.capitalize(Locale.getDefault())
+        binding.tvStarMass.text = results.mass.toString().capitalize(Locale.getDefault())
+        binding.tvStarBirthYear.text = results.birth_year.capitalize(Locale.getDefault())
+        binding.tvStarGender.text = results.gender.capitalize(Locale.getDefault())
+        val created = results.created
         val createDate = created.split("T".toRegex())[0]
-        val edited=results.edited
+        val edited = results.edited
         val editDate = edited.split("T".toRegex())[0]
-        binding.tvStarCreated.text= createDate
-        binding.tvStarEdited.text= editDate
+        binding.tvStarCreated.text = createDate
+        binding.tvStarEdited.text = editDate
 
     }
 

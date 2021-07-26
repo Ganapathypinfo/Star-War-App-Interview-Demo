@@ -16,25 +16,25 @@ class DetailsViewModel(private val apiRepository: ApiRepository) : ViewModel() {
     }
 
     fun getScreen(arguments: Bundle): String {
-        return arguments.getString("Screen",null) as String
+        return arguments.getString("Screen", null) as String
     }
 
     private val peopleResultsMutableLiveData: MutableLiveData<BaseApiResponseModel<Results>> =
         MutableLiveData()
 
     fun getPeopleResultsMutableLiveData(): MutableLiveData<BaseApiResponseModel<Results>> {
-        return peopleResultsMutableLiveData;
+        return peopleResultsMutableLiveData
     }
 
     fun fetchPeopleResultsResponseLiveData(searchQuery: String) {
         val apiResponseModelSingle: Single<Results?>? =
-            apiRepository.details(searchQuery);
+            apiRepository.details(searchQuery)
         LiveDataUtils.updateStatus(peopleResultsMutableLiveData, apiResponseModelSingle)
     }
 
     fun fetchListItemPeopleResultsResponseLiveData(searchQuery: String) {
         val apiResponseModelSingle: Single<Results?>? =
-            apiRepository.listitemdetails(searchQuery);
+            apiRepository.listItemDetails(searchQuery)
         LiveDataUtils.updateStatus(peopleResultsMutableLiveData, apiResponseModelSingle)
     }
 }

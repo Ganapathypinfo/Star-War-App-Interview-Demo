@@ -24,7 +24,7 @@ class AutoSuggestAdapter(context: Context, @LayoutRes private val layoutResource
 
     fun setData(list: List<Results>) {
         resultData!!.clear()
-        resultData!!.addAll(list!!)
+        resultData!!.addAll(list)
     }
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup): View {
@@ -44,12 +44,6 @@ class AutoSuggestAdapter(context: Context, @LayoutRes private val layoutResource
         return resultData!![position]
     }
 
-    /**
-     * Used to Return the full object directly from adapter.
-     *
-     * @param position
-     * @return
-     */
     fun getObject(position: Int): Results {
         return resultData!![position]
     }

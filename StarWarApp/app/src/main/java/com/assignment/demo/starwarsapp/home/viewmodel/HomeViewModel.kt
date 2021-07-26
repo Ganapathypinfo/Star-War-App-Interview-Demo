@@ -18,12 +18,12 @@ class HomeViewModel(
         MutableLiveData()
 
     fun getPeopleResponseMutableLiveData(): MutableLiveData<BaseApiResponseModel<PeopleResponseModel>> {
-        return peopleResponseMutableLiveData;
+        return peopleResponseMutableLiveData
     }
 
     fun searchPeoplesResponseLiveData(searchQuery: String) {
         val baseSearchApiResponseModelSingle: Single<PeopleResponseModel?>? =
-            apiRepository.search(searchQuery);
+            apiRepository.search(searchQuery)
         LiveDataUtils.updateStatus(peopleResponseMutableLiveData, baseSearchApiResponseModelSingle)
     }
 
@@ -35,25 +35,29 @@ class HomeViewModel(
         MutableLiveData()
 
     fun getRemoteResponsePeopleMutableLiveData(): MutableLiveData<BaseApiResponseModel<PeopleResponseModel>> {
-        return remoteResponsePeopleMutableLiveData;
+        return remoteResponsePeopleMutableLiveData
     }
 
     fun getPeoples() {
         val baseSearchApiResponseModelSingle: Single<PeopleResponseModel>? =
-            apiRepository.starList();
-        LiveDataUtils.updateStatus(remoteResponsePeopleMutableLiveData, baseSearchApiResponseModelSingle)
+            apiRepository.starList()
+        LiveDataUtils.updateStatus(
+            remoteResponsePeopleMutableLiveData,
+            baseSearchApiResponseModelSingle
+        )
     }
 
-    private val remoteLoadMoreMutableLiveData: MutableLiveData<BaseApiResponseModel<PeopleResponseModel>> =
+    private val loadMoreMutableLiveData: MutableLiveData<BaseApiResponseModel<PeopleResponseModel>> =
         MutableLiveData()
 
-    fun getRemoteLoadMoreMutableLiveData(): MutableLiveData<BaseApiResponseModel<PeopleResponseModel>> {
-        return remoteLoadMoreMutableLiveData;
+    fun getLoadMoreMutableLiveData(): MutableLiveData<BaseApiResponseModel<PeopleResponseModel>> {
+        return loadMoreMutableLiveData
     }
-    fun getPeopleLoadMore(url:String?) {
+
+    fun getPeopleLoadMore(url: String?) {
         val baseSearchApiResponseModelSingle: Single<PeopleResponseModel>? =
-            apiRepository.loadMore(url);
-        LiveDataUtils.updateStatus(remoteLoadMoreMutableLiveData, baseSearchApiResponseModelSingle)
+            apiRepository.loadMore(url)
+        LiveDataUtils.updateStatus(loadMoreMutableLiveData, baseSearchApiResponseModelSingle)
     }
 
 }

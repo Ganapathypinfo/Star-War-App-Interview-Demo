@@ -6,7 +6,6 @@ import android.os.Message
 import android.text.Editable
 import android.text.TextUtils
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -58,8 +57,6 @@ class HomeFragment : BaseFragment() {
     private lateinit var starList: ArrayList<Results>;
 
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val apiRequest = ApiRetrofit.getRetrofitInstance()
@@ -79,22 +76,18 @@ class HomeFragment : BaseFragment() {
 
             showProgressDialog()
             homeViewModel.getPeopleLoadMore(nextPageUrl)
-            homeViewModel.getRemoteLoadMoreMutableLiveData()
+            homeViewModel.getLoadMoreMutableLiveData()
                 .observe(viewLifecycleOwner) { baseApiResponseModel: BaseApiResponseModel<PeopleResponseModel>? ->
                     hideProgressDialog()
                     if (baseApiResponseModel != null && baseApiResponseModel.isSuccessful) {
                         val apiResponseData =
                             baseApiResponseModel.apiResponseData as PeopleResponseModel
                         apiResponseData?.let {
-//                            if (starList.isNotEmpty()) starList.clear()
                             starList.addAll(apiResponseData.results)
                             showLoadMore(starList)
                             nextPageUrl = apiResponseData.next
                         }
-
                     } else {
-                        //TODO handle api error here
-                        //TODO handle api error here
                         val errorMsgString = resources.getString(R.string.error_msg)
                         notificationHelper.setSnackBar(binding.root, errorMsgString)
                     }
@@ -107,7 +100,7 @@ class HomeFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
         initObservers()
         setupSearchAutoCompleteView(binding.includeAutocompleteSearchLayout.autoCompleteSearch)
-        starList=ArrayList()
+        starList = ArrayList()
     }
 
     override fun onResume() {
@@ -146,7 +139,8 @@ class HomeFragment : BaseFragment() {
             if (msg.what == TRIGGER_AUTO_COMPLETE) {
                 val selectedText = autoCompleteTextView.text
                 if (!TextUtils.isEmpty(selectedText)) {
-                    binding.includeAutocompleteSearchLayout.progressLoading.visibility=View.VISIBLE
+                    binding.includeAutocompleteSearchLayout.progressLoading.visibility =
+                        View.VISIBLE
                     fetchSearchDataFromApi(selectedText.toString())
                 }
             }
@@ -158,7 +152,7 @@ class HomeFragment : BaseFragment() {
     private fun onAutoCompleteRowClick(result: Results) {
         binding.includeAutocompleteSearchLayout.autoCompleteSearch.text.clear()
         (activity as MainActivity).hideKeyboard()
-        openDetailsFragment(dataConverter.getIdFromResult(result),AppConstants.SEARCH)
+        openDetailsFragment(dataConverter.getIdFromResult(result), AppConstants.SEARCH)
     }
 
     private fun initObservers() {
@@ -168,9 +162,10 @@ class HomeFragment : BaseFragment() {
             .observe(viewLifecycleOwner) { baseApiResponseModel: BaseApiResponseModel<PeopleResponseModel>? ->
                 hideProgressDialog()
                 if (baseApiResponseModel != null && baseApiResponseModel.isSuccessful) {
-                    val apiResponseData = baseApiResponseModel.apiResponseData as PeopleResponseModel
+                    val apiResponseData =
+                        baseApiResponseModel.apiResponseData as PeopleResponseModel
                     apiResponseData?.let {
-                        if(starList!=null)starList.clear()
+                        if (starList != null) starList.clear()
                         starList.addAll(apiResponseData.results)
                         showStarList(starList)
                         nextPageUrl = apiResponseData.next
@@ -178,8 +173,6 @@ class HomeFragment : BaseFragment() {
                     }
 
                 } else {
-                    //TODO handle api error here
-                    //TODO handle api error here
                     val errorMsgString = resources.getString(R.string.error_msg)
                     notificationHelper.setSnackBar(binding.root, errorMsgString)
                 }
@@ -187,14 +180,13 @@ class HomeFragment : BaseFragment() {
 
         homeViewModel.getPeopleResponseMutableLiveData()
             .observe(viewLifecycleOwner) { baseApiResponseModel ->
-                binding.includeAutocompleteSearchLayout.progressLoading.visibility=View.INVISIBLE
+                binding.includeAutocompleteSearchLayout.progressLoading.visibility = View.INVISIBLE
                 if (baseApiResponseModel != null && baseApiResponseModel.isSuccessful) {
                     val apiResponseData = baseApiResponseModel.apiResponseData
                     apiResponseData?.let {
                         val filteredData = homeViewModel.filterData(it, dataConverter)
                         populateSearchListData(filteredData)
                     }
-
                 } else {
                     //TODO handle api error here
                     val errorMsgString = resources.getString(R.string.error_msg)
@@ -207,7 +199,7 @@ class HomeFragment : BaseFragment() {
         homeViewModel.searchPeoplesResponseLiveData(searchQuery)
     }
 
-    private fun openDetailsFragment(selectedId: String,screen:String) {
+    private fun openDetailsFragment(selectedId: String, screen: String) {
         val detailsFragment = DetailsFragment()
         val bundle = Bundle()
         bundle.putString("Screen", screen)
@@ -221,8 +213,8 @@ class HomeFragment : BaseFragment() {
         autoSuggestAdapter.notifyDataSetChanged()
     }
 
-    fun onRowItemClicked(selectedId: String,screen:String) {
-        openDetailsFragment(selectedId,screen)
+    fun onRowItemClicked(selectedId: String, screen: String) {
+        openDetailsFragment(selectedId, screen)
     }
 
 
@@ -232,17 +224,13 @@ class HomeFragment : BaseFragment() {
         binding.btnloadMore.visibility = View.VISIBLE
         binding.tvNoData.visibility = View.GONE
         binding.recyclerView.adapter = adapterstarList
-        Log.d("showStarList before",remote.size.toString())
         adapterstarList.notifyDataSetChanged()
-        Log.d("showStarList after",remote.size.toString())
 
     }
-
 
     private fun showProgressDialog() {
         binding.progressBar.visibility = View.VISIBLE
     }
-
 
     private fun hideProgressDialog() {
         binding.progressBar.visibility = View.GONE
@@ -252,8 +240,6 @@ class HomeFragment : BaseFragment() {
         binding.recyclerView.visibility = View.VISIBLE
         binding.btnloadMore.visibility = View.VISIBLE
         binding.tvNoData.visibility = View.GONE
-        Log.d("showLoadMore before",remote.size.toString())
         adapterstarList.notifyDataSetChanged()
-        Log.d("showLoadMore after",remote.size.toString())
     }
 }

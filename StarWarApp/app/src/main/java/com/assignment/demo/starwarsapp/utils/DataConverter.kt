@@ -9,7 +9,6 @@ class DataConverter @Inject constructor() {
         if (searchApiResponseData != null && !searchApiResponseData.results.isNullOrEmpty()) {
             return searchApiResponseData.results as ArrayList
         }
-
         return ArrayList()
     }
 

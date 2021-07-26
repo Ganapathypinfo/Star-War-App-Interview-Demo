@@ -31,6 +31,6 @@ interface StarWarsApiRequest {
     fun starList(): Single<PeopleResponseModel>
 
     @GET()
-    fun loadMore(@Url url:String?):Single<PeopleResponseModel>
+    fun loadMore(@Url url: String?): Single<PeopleResponseModel>
 
 }

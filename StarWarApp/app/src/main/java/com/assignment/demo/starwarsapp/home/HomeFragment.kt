@@ -52,7 +52,7 @@ class HomeFragment : BaseFragment() {
     private val TRIGGER_AUTO_COMPLETE = 100
     private val AUTO_COMPLETE_DELAY: Long = 300
     private var handler: Handler? = null
-    private lateinit var adapterstarList: PeopleListRecyclerViewAdapter
+    private lateinit var peopleListAdapter: PeopleListRecyclerViewAdapter
 
     private lateinit var starList: ArrayList<Results>;
 
@@ -82,9 +82,9 @@ class HomeFragment : BaseFragment() {
                     if (baseApiResponseModel != null && baseApiResponseModel.isSuccessful) {
                         val apiResponseData =
                             baseApiResponseModel.apiResponseData as PeopleResponseModel
-                        apiResponseData?.let {
+                        apiResponseData.let {
                             starList.addAll(apiResponseData.results)
-                            showLoadMore(starList)
+                            showLoadMore()
                             nextPageUrl = apiResponseData.next
                         }
                     } else {
@@ -165,7 +165,7 @@ class HomeFragment : BaseFragment() {
                     val apiResponseData =
                         baseApiResponseModel.apiResponseData as PeopleResponseModel
                     apiResponseData?.let {
-                        if (starList != null) starList.clear()
+                        if (starList.isNotEmpty()) starList.clear()
                         starList.addAll(apiResponseData.results)
                         showStarList(starList)
                         nextPageUrl = apiResponseData.next
@@ -188,7 +188,6 @@ class HomeFragment : BaseFragment() {
                         populateSearchListData(filteredData)
                     }
                 } else {
-                    //TODO handle api error here
                     val errorMsgString = resources.getString(R.string.error_msg)
                     notificationHelper.setSnackBar(binding.root, errorMsgString)
                 }
@@ -219,12 +218,12 @@ class HomeFragment : BaseFragment() {
 
 
     private fun showStarList(remote: List<Results>) {
-        adapterstarList = PeopleListRecyclerViewAdapter(this, remote)
+        peopleListAdapter = PeopleListRecyclerViewAdapter(this, remote)
         binding.recyclerView.visibility = View.VISIBLE
         binding.btnloadMore.visibility = View.VISIBLE
         binding.tvNoData.visibility = View.GONE
-        binding.recyclerView.adapter = adapterstarList
-        adapterstarList.notifyDataSetChanged()
+        binding.recyclerView.adapter = peopleListAdapter
+        peopleListAdapter.notifyDataSetChanged()
 
     }
 
@@ -236,10 +235,10 @@ class HomeFragment : BaseFragment() {
         binding.progressBar.visibility = View.GONE
     }
 
-    private fun showLoadMore(remote: List<Results>) {
+    private fun showLoadMore() {
         binding.recyclerView.visibility = View.VISIBLE
         binding.btnloadMore.visibility = View.VISIBLE
         binding.tvNoData.visibility = View.GONE
-        adapterstarList.notifyDataSetChanged()
+        peopleListAdapter.notifyDataSetChanged()
     }
 }

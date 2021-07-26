@@ -6,6 +6,7 @@ import android.os.Handler
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.assignment.demo.starwarsapp.R
+import com.assignment.demo.starwarsapp.constants.AppConstants
 
 class SplashActivity : AppCompatActivity() {
 
@@ -22,6 +23,6 @@ class SplashActivity : AppCompatActivity() {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
-        }, 2000)
+        }, AppConstants.SPLASH_TIME.toLong())
     }
 }

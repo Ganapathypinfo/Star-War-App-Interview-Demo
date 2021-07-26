@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">StarWarApp</string>
-    <string name="search">Search by name eg Darth </string>
+    <string name="search">Search by name e.g. Darth </string>
 
     <!--Notification SnackBar -->
     <string name="error_msg">Sorry, we can’t process your request right now. Please try again, later.</string>

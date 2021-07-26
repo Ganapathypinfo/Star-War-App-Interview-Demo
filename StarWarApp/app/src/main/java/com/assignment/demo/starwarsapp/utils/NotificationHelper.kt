@@ -15,13 +15,13 @@ class NotificationHelper @Inject constructor() {
     fun setSnackBar(root: View?, snackBarMessage: String?) {
         val defaultSnackBarErrorMessage = root!!.context.resources.getString(R.string.error_msg)
         try {
-            if (root != null && root.context != null) {
-                val snackbar: Snackbar =
+            if (root.context != null) {
+                val snackBar: Snackbar =
                     if (snackBarMessage != null && !snackBarMessage.equals("", ignoreCase = true)
                     ) getSnackBar(root, snackBarMessage) else {
                         getSnackBar(root, defaultSnackBarErrorMessage)
                     }
-                snackbar.show()
+                snackBar.show()
             }
         } catch (e: Exception) {
             e.printStackTrace()
@@ -29,14 +29,14 @@ class NotificationHelper @Inject constructor() {
     }
 
     private fun getSnackBar(root: View, snackBarMessage: String): Snackbar {
-        val snackbar = Snackbar.make(root, snackBarMessage, Snackbar.LENGTH_SHORT)
-        val view = snackbar.view
+        val snackBar = Snackbar.make(root, snackBarMessage, Snackbar.LENGTH_SHORT)
+        val view = snackBar.view
         val resources = root.context.resources
         view.setBackgroundColor(resources.getColor(R.color.snack_bar_background_color))
-        val txtv = view.findViewById<TextView>(R.id.snackbar_text)
-        txtv.setTextColor(Color.WHITE)
-        txtv.textSize = 16f
-        txtv.gravity = Gravity.CENTER_HORIZONTAL
-        return snackbar
+        val textSnackBar= view.findViewById<TextView>(R.id.snackbar_text)
+        textSnackBar.setTextColor(Color.WHITE)
+        textSnackBar.textSize = 16f
+        textSnackBar.gravity = Gravity.CENTER_HORIZONTAL
+        return snackBar
     }
 }

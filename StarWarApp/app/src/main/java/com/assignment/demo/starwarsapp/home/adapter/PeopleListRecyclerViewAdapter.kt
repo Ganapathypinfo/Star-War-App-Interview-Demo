@@ -17,27 +17,26 @@ import java.util.*
 
 class PeopleListRecyclerViewAdapter(
     private val fragment: Fragment,
-    private val starwarsRoomDataModels: List<Results>
+    private val peopleList: List<Results>
 ) :
-    RecyclerView.Adapter<PeopleListRecyclerViewAdapter.starwarsViewHolder>() {
-
+    RecyclerView.Adapter<PeopleListRecyclerViewAdapter.peopleListViewHolder>() {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): PeopleListRecyclerViewAdapter.starwarsViewHolder {
+    ): PeopleListRecyclerViewAdapter.peopleListViewHolder {
         val view: View =
             LayoutInflater.from(fragment.context)
                 .inflate(R.layout.row_recent_search, parent, false)
-        return starwarsViewHolder(view)
+        return peopleListViewHolder(view)
     }
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(
-        holder: PeopleListRecyclerViewAdapter.starwarsViewHolder,
+        holder: PeopleListRecyclerViewAdapter.peopleListViewHolder,
         position: Int
     ) {
-        val curr = starwarsRoomDataModels[position]
+        val curr = peopleList[position]
         holder.name.text = "Name: ${curr.name}"
         holder.gender.text = "Gender: ${curr.gender.toUpperCase(Locale.getDefault())}"
         holder.birthyear.text = "BirthYear: ${curr.birth_year.toUpperCase(Locale.getDefault())}"
@@ -51,19 +50,16 @@ class PeopleListRecyclerViewAdapter(
     }
 
     override fun getItemCount(): Int {
-        return if (starwarsRoomDataModels != null && !starwarsRoomDataModels.isNullOrEmpty())
-            starwarsRoomDataModels.size
+        return if (peopleList != null && !peopleList.isNullOrEmpty())
+            peopleList.size
         else
             0;
     }
 
-
-    class starwarsViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class peopleListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var name: TextView = itemView.findViewById(R.id.tvStarName)
         var gender: TextView = itemView.findViewById(R.id.tvStarGender)
         var birthyear: TextView = itemView.findViewById(R.id.tvBirthYear)
         var layout: ConstraintLayout = itemView.findViewById(R.id.const_details)
-
-
     }
 }

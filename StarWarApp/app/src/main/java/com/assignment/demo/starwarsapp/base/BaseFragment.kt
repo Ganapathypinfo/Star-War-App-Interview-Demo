@@ -7,10 +7,6 @@ import dagger.android.support.DaggerFragment
 
 open class BaseFragment : DaggerFragment() {
 
-    protected fun onFragmentBackPressed() {
-        requireActivity().onBackPressed()
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 

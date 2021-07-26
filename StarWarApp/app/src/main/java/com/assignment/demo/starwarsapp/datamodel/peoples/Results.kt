@@ -12,7 +12,7 @@ data class Results (
 	@SerializedName("eye_color") val eye_color : String,
 	@SerializedName("birth_year") val birth_year : String,
 	@SerializedName("gender") val gender : String,
-	@SerializedName("homeworld") val homeworld : String,
+	@SerializedName("homeworld") val homeWorld : String,
 	@SerializedName("films") val films : List<String>,
 	@SerializedName("species") val species : List<String>,
 	@SerializedName("vehicles") val vehicles : List<String>,

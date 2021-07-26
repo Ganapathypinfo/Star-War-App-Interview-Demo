@@ -21,7 +21,6 @@ class ApiRepository @Inject constructor(private val apiRequest: StarWarsApiReque
         return apiRequest.listItemDetails(query)
     }
 
-
     fun starList(): Single<PeopleResponseModel>? {
         return apiRequest.starList()
     }

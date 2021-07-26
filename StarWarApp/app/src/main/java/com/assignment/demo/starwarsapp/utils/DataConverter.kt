@@ -1,5 +1,7 @@
 package com.assignment.demo.starwarsapp.utils
 
+import com.assignment.demo.starwarsapp.BuildConfig
+import com.assignment.demo.starwarsapp.constants.AppConstants
 import com.assignment.demo.starwarsapp.datamodel.peoples.PeopleResponseModel
 import com.assignment.demo.starwarsapp.datamodel.peoples.Results
 import javax.inject.Inject
@@ -17,8 +19,8 @@ class DataConverter @Inject constructor() {
     }
 
     fun getIdFromResult(result: Results): String {
-        val temp = "https://swapi.dev/api/people/"
-        return result.url.replace(temp, "").replace("/", "")
+        val resultApi = BuildConfig.BASE_URL + AppConstants.PEOPLE_SLASH
+        return result.url.replace(resultApi, "").replace("/", "")
     }
 
 }

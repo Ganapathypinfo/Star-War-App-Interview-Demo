@@ -248,6 +248,8 @@ class HomeFragment : BaseFragment() {
         binding.btnNext.visibility = View.VISIBLE
         binding.tvNoData.visibility = View.GONE
         binding.recyclerView.adapter = peopleListAdapter
+        if (previousPageUrl != null) binding.btnPrevious.visibility = View.VISIBLE
+        else binding.btnPrevious.visibility = View.INVISIBLE
         peopleListAdapter.notifyDataSetChanged()
 
     }

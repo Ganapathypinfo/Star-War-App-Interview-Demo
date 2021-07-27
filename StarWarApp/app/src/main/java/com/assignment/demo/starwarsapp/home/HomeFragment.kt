@@ -36,6 +36,7 @@ import javax.inject.Inject
 class HomeFragment : BaseFragment() {
 
     private var nextPageUrl: String? = ""
+    private var previousPageUrl: String? = ""
 
     @Inject
     lateinit var ApiRetrofit: ApiRetrofit
@@ -54,7 +55,7 @@ class HomeFragment : BaseFragment() {
     private var handler: Handler? = null
     private lateinit var peopleListAdapter: PeopleListRecyclerViewAdapter
 
-    private lateinit var starList: ArrayList<Results>;
+    private lateinit var starList: ArrayList<Results>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -72,8 +73,7 @@ class HomeFragment : BaseFragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        binding.btnloadMore.setOnClickListener {
-
+        binding.btnNext.setOnClickListener {
             showProgressDialog()
             homeViewModel.getPeopleLoadMore(nextPageUrl)
             homeViewModel.getLoadMoreMutableLiveData()
@@ -83,9 +83,11 @@ class HomeFragment : BaseFragment() {
                         val apiResponseData =
                             baseApiResponseModel.apiResponseData as PeopleResponseModel
                         apiResponseData.let {
+                            if (starList.isNotEmpty()) starList.clear()
                             starList.addAll(apiResponseData.results)
-                            showLoadMore()
                             nextPageUrl = apiResponseData.next
+                            previousPageUrl = apiResponseData.previous
+                            showLoadMore()
                         }
                     } else {
                         val errorMsgString = resources.getString(R.string.error_msg)
@@ -93,6 +95,29 @@ class HomeFragment : BaseFragment() {
                     }
                 }
         }
+        binding.btnPrevious.setOnClickListener {
+            showProgressDialog()
+            homeViewModel.getPeopleLoadMore(previousPageUrl)
+            homeViewModel.getLoadMoreMutableLiveData()
+                .observe(viewLifecycleOwner) { baseApiResponseModel: BaseApiResponseModel<PeopleResponseModel>? ->
+                    hideProgressDialog()
+                    if (baseApiResponseModel != null && baseApiResponseModel.isSuccessful) {
+                        val apiResponseData =
+                            baseApiResponseModel.apiResponseData as PeopleResponseModel
+                        apiResponseData.let {
+                            if (starList.isNotEmpty()) starList.clear()
+                            starList.addAll(apiResponseData.results)
+                            nextPageUrl = apiResponseData.next
+                            previousPageUrl = apiResponseData.previous
+                            showLoadMore()
+                        }
+                    } else {
+                        val errorMsgString = resources.getString(R.string.error_msg)
+                        notificationHelper.setSnackBar(binding.root, errorMsgString)
+                    }
+                }
+        }
+
         return binding.root
     }
 
@@ -157,7 +182,7 @@ class HomeFragment : BaseFragment() {
 
     private fun initObservers() {
         showProgressDialog()
-        homeViewModel.getPeoples();
+        homeViewModel.getPeoples()
         homeViewModel.getRemoteResponsePeopleMutableLiveData()
             .observe(viewLifecycleOwner) { baseApiResponseModel: BaseApiResponseModel<PeopleResponseModel>? ->
                 hideProgressDialog()
@@ -167,9 +192,9 @@ class HomeFragment : BaseFragment() {
                     apiResponseData?.let {
                         if (starList.isNotEmpty()) starList.clear()
                         starList.addAll(apiResponseData.results)
-                        showStarList(starList)
                         nextPageUrl = apiResponseData.next
-
+                        previousPageUrl = apiResponseData.previous
+                        showStarList(starList)
                     }
 
                 } else {
@@ -220,7 +245,7 @@ class HomeFragment : BaseFragment() {
     private fun showStarList(remote: List<Results>) {
         peopleListAdapter = PeopleListRecyclerViewAdapter(this, remote)
         binding.recyclerView.visibility = View.VISIBLE
-        binding.btnloadMore.visibility = View.VISIBLE
+        binding.btnNext.visibility = View.VISIBLE
         binding.tvNoData.visibility = View.GONE
         binding.recyclerView.adapter = peopleListAdapter
         peopleListAdapter.notifyDataSetChanged()
@@ -237,8 +262,10 @@ class HomeFragment : BaseFragment() {
 
     private fun showLoadMore() {
         binding.recyclerView.visibility = View.VISIBLE
-        binding.btnloadMore.visibility = View.VISIBLE
+        binding.btnNext.visibility = View.VISIBLE
         binding.tvNoData.visibility = View.GONE
+        if (previousPageUrl != null) binding.btnPrevious.visibility = View.VISIBLE
+        else binding.btnPrevious.visibility = View.INVISIBLE
         peopleListAdapter.notifyDataSetChanged()
     }
 }

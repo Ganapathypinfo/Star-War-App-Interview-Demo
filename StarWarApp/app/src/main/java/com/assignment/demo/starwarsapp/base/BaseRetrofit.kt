@@ -1,6 +1,7 @@
 package com.assignment.demo.starwarsapp.base
 
 import android.content.Context
+import com.assignment.demo.starwarsapp.constants.AppConstants
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -25,9 +26,9 @@ open class BaseRetrofit {
     private fun getSecuredOkHttpClient(context: Context): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(getLogger())
-            .connectTimeout(120, TimeUnit.SECONDS)
-            .readTimeout(120, TimeUnit.SECONDS)
-            .writeTimeout(120, TimeUnit.SECONDS)
+            .connectTimeout(AppConstants.TIME_OUT.toLong(), TimeUnit.SECONDS)
+            .readTimeout(AppConstants.TIME_OUT.toLong(), TimeUnit.SECONDS)
+            .writeTimeout(AppConstants.TIME_OUT.toLong(), TimeUnit.SECONDS)
             .build()
     }
 

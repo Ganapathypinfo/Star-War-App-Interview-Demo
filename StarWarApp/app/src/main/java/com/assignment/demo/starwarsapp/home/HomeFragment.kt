@@ -131,7 +131,6 @@ class HomeFragment : BaseFragment() {
     override fun onResume() {
         super.onResume()
         binding.includeAutocompleteSearchLayout.autoCompleteSearch.text.clear()
-        initObservers()
     }
 
 

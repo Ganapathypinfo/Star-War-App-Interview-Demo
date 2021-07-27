@@ -75,8 +75,7 @@
         android:textColor="@color/colorAccent"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-    </TextView>
+        app:layout_constraintStart_toStartOf="parent"></TextView>
 
 
     <TextView
@@ -87,7 +86,6 @@
         android:textColor="@color/colorAccent"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-    </TextView>
+        app:layout_constraintEnd_toEndOf="parent"></TextView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

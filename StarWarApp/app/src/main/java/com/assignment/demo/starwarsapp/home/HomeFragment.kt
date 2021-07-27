@@ -117,7 +117,6 @@ class HomeFragment : BaseFragment() {
                     }
                 }
         }
-
         return binding.root
     }
 
@@ -195,7 +194,6 @@ class HomeFragment : BaseFragment() {
                         previousPageUrl = apiResponseData.previous
                         showStarList(starList)
                     }
-
                 } else {
                     val errorMsgString = resources.getString(R.string.error_msg)
                     notificationHelper.setSnackBar(binding.root, errorMsgString)
@@ -239,7 +237,6 @@ class HomeFragment : BaseFragment() {
     fun onRowItemClicked(selectedId: String, screen: String) {
         openDetailsFragment(selectedId, screen)
     }
-
 
     private fun showStarList(remote: List<Results>) {
         peopleListAdapter = PeopleListRecyclerViewAdapter(this, remote)
